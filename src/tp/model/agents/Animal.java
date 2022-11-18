@@ -22,6 +22,44 @@ public class Animal {
 	private Etat etat;
 	private Sexe sexe;
 	
+	@Override
+	public String toString() {
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
+		result = prime * result + ((sexe == null) ? 0 : sexe.hashCode());
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (age != other.age)
+			return false;
+		if (etat != other.etat)
+			return false;
+		if (sexe != other.sexe)
+			return false;
+		return true;
+	}
+
+
+
 	/* 
 	 * constructeurs 
 	 */
@@ -113,6 +151,10 @@ public class Animal {
 			age = new_age;
 		}
 	}
+	public void setCoord(int dx, int dy) {
+		coord.x = coord.x + dx;
+		coord.y = coord.y + dy;
+	}
 	
 	
 	/*
@@ -126,9 +168,17 @@ public class Animal {
 	 */
 	
 	
-
+	/**
+	 * Fonction seDeplacer() permet de déplacer aléatoirement l'animal de -1, 0 ou 1, de x ou y
+	 */
 	public void seDeplacer() {
-		//TODO utiliser Math.random() pour choisir une direction de déplacement
+		double dx;
+		double dy;
+		dx = Math.floor(Math.random()*3-1);
+		dy = Math.floor(Math.random()*3-1);
+		int dx_int = (int)dx;
+		int dy_int = (int)dy;
+		setCoord(dx_int,dy_int);
 	}
 	
 	public void vieillir() {
@@ -141,14 +191,16 @@ public class Animal {
 		//TODO
 	}
 	
-	/* comportements de classe */ 
+	/* comportements de classe */
+	
 	/**
 	 * Renvoie un identifiant unique non encore utilisé
 	 * @return un identifiant entier unique d'animal
 	 */
 	private static int getUniqueId() {
-		//TODO  
-		return 0;
+		//TODO
+		currentId ++;
+		return currentId;
 	}
 	
 	public static void main(String args[]) {
@@ -221,8 +273,15 @@ public class Animal {
 		System.out.println(b.getAge());
 		
 		//TODO test seDeplacer
+		a.seDeplacer();
 		
 		//TODO test id
+		System.out.println("\n-> All ID");
+		System.out.println(a.getId());
+		System.out.println(b.getId());
+		System.out.println(c.getId());
+		System.out.println(d.getId());
+		System.out.println(e.getId());
 		
 		/*
 		 * Test comparaison
