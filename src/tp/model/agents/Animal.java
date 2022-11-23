@@ -22,13 +22,7 @@ public class Animal {
 	private Etat etat;
 	private Sexe sexe;
 	
-	@Override
-	public String toString() {
-	}
 	
-	
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -156,7 +150,9 @@ public class Animal {
 		coord.y = coord.y + dy;
 	}
 	
-	
+	public String toString() {
+		return this.getClass().getSimpleName() + " " + this.id + " (" + this.sexe + ", (" + this.coord.x + ", " + this.coord.y +")).";
+	}
 	/*
 	 * Redéfinitions de méthodes d'object
 	 */
@@ -202,6 +198,7 @@ public class Animal {
 		currentId ++;
 		return currentId;
 	}
+
 	
 	public static void main(String args[]) {
 		//tests unitaires de la classe Animal
@@ -283,15 +280,21 @@ public class Animal {
 		System.out.println(d.getId());
 		System.out.println(e.getId());
 		
+		
+		// Test 4211
+		System.out.println("\n-> String toString");
+		System.out.println(a);
+		
 		/*
 		 * Test comparaison
 		 */
-		/*
+		System.out.println("\n-> Test Comparaison");
 		System.out.println(d==e);
 		System.out.println(d.equals(e));
 		System.out.println("Bonjour"=="Bonjour");
 		System.out.println("Bonjour".equals("Bonjour"));
-		*/
+		
+
 	}
 
 }
