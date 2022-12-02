@@ -1,5 +1,6 @@
 package launchers;
 import tp.model.agents.*;
+import tp.model.decors.*;
 import tp.model.comportements.*;
 
 import java.awt.Point;
@@ -12,6 +13,8 @@ public class LauncherTP2 {
 		Arbre c = new Arbre(new Point(10,85));
 		FrelonAsiatique d = new FrelonAsiatique(Sexe.Male,new Point(12,47));
 		Varroa e = new Varroa();
+		Ruche f = new Ruche(new Point (15,33));
+		AbeilleDomestique g = new AbeilleDomestique(Sexe.Femelle,new Point(4,5));
 		
 		
 		//TODO
@@ -25,15 +28,8 @@ public class LauncherTP2 {
 		System.out.println(c.peutAccueillir(b));
 		System.out.println(b.getHebergeur());
 		System.out.println("\n");
-		System.out.println(c.peutAccueillir(a));
-		System.out.println(a.getHebergeur());
-		System.out.println("\n");
-		System.out.println(c.peutAccueillir(d));
-		System.out.println(d.getHebergeur());
-		System.out.println("\n");
-		System.out.println(c.peutAccueillir(e));
-		System.out.println(e.getHebergeur());
-		System.out.println("\n");
+		System.out.println(f.peutAccueillir(g));
+		System.out.println(g.getHebergeur());
 		
 		System.out.println(b.getMiel());
 		b.setMiel(500000);
