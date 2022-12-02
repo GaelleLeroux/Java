@@ -2,27 +2,16 @@ package tp.model.agents;
 
 import java.awt.Point;
 
+import tp.model.comportements.Hebergeur;
 /**
  * Cette classe modélise un Animal dans la simulation
  * @author Evann / Gaelle
  *
  */
-public class Animal {
-	/* attributs de classe */
-	private static int currentId = 0;
-	
-	/* attributs d'instance*/
-	/** identifiant unique de l'animal*/
-	private int id;
-	/** age en unité de temps*/
-	private int age;
-	/** position sur la carte*/
-	private Point coord;
+public class Animal extends Agent {
 	/** état de santé de l'animal */
 	private Etat etat;
-	private Sexe sexe;
-	
-	
+	private Hebergeur hebergeur;
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -66,7 +55,6 @@ public class Animal {
 		age = 0;
 		id = Animal.getUniqueId();
 		this.sexe=sexe;
-		//this.coord=coord;
 		this.coord=new Point(coord);
 		this.etat = Etat.Normal;
 	}
@@ -97,31 +85,6 @@ public class Animal {
 		this.etat = Etat.Normal;
 	}
 	
-	/*
-	 *  Accesseurs et mutateurs
-	 */
-	//TODO
-	/**
-	 * retourne l'âge
-	 * @return
-	 */
-	public int getAge() {
-		return this.age;
-	}
-	/**
-	 * retourne l'ID
-	 * @return
-	 */
-	public int getId() {
-		return this.id;
-	}
-	/**
-	 * retourne le sexe
-	 * @return
-	 */
-	public Sexe getSexe() {
-		return this.sexe; 
-	}
 	/**
 	 * retourne l'état
 	 * @return
@@ -129,34 +92,14 @@ public class Animal {
 	public Etat getEtat() {
 		return this.etat;
 	}
-	/**
-	 * retourne les coords
-	 * @return
-	 */
-	public Point getCoord() {
-		return new Point(this.coord.x, this.coord.y);
-	}
-	/**
-	 * Met à jour l'age si il veillit
-	 * @param new_age
-	 */
-	public void setAge(int new_age) {
-		if (new_age>age) {
-			age = new_age;
-		}
-	}
-	public void setCoord(int dx, int dy) {
-		coord.x = coord.x + dx;
-		coord.y = coord.y + dy;
+	
+	public Hebergeur getHebergeur() {
+		return this.hebergeur;
 	}
 	
-	public String toString() {
-		return this.getClass().getSimpleName() + " " + this.id + " (" + this.sexe + ", (" + this.coord.x + ", " + this.coord.y +")).";
+	public void setHebergeur(Hebergeur a) {
+		this.hebergeur = a;
 	}
-	/*
-	 * Redéfinitions de méthodes d'object
-	 */
-	//TODO
 	
 
 	/* 
@@ -177,38 +120,21 @@ public class Animal {
 		setCoord(dx_int,dy_int);
 	}
 	
-	public void vieillir() {
-		//TODO fait vieillir l'animal d'une unité de temps
-		//une bonne manière de faire, une moins bonne...
-		setAge(getAge()+1);
-	}
-	
-	public void rencontrer(Animal a) {
+	public void rencontrer(Agent a) {
 		//TODO
-	}
-	
-	/* comportements de classe */
-	
-	/**
-	 * Renvoie un identifiant unique non encore utilisé
-	 * @return un identifiant entier unique d'animal
-	 */
-	private static int getUniqueId() {
-		//TODO
-		currentId ++;
-		return currentId;
 	}
 
+	/* comportements de classe */
 	
 	public static void main(String args[]) {
 		//tests unitaires de la classe Animal
 		//TODO décommentez les lignes pour approfondir le test unitaire
 		//complétez la méthode pour tester les nouvelles fonctionnalités que vous allez implémenter
 		Animal a = new Animal();
-		Animal b = new Animal(Sexe.Male);
-		Animal c = new Animal(Sexe.Assexue);
+		Agent b = new Animal(Sexe.Male);
+		Agent c = new Animal(Sexe.Assexue);
 		Animal d = new Animal(Sexe.Femelle,new Point(25,30));
-		Animal e = new Animal(Sexe.Femelle,new Point(25,30));
+		Agent e = new Animal(Sexe.Femelle,new Point(25,30));
 		
 		/*
 		 * les lignes suivantes doivent afficher à terme: NomDeLaClasse n° id_animal(sexe, (position x; position y)).
